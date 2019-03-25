@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 class Header extends Component {
   render() {
     return (
-      <div className="ui secondary pointing menu">
-        <Link to="/" className="item">
-          Streamer
+      <div className="ui menu">
+        <Link to="/" className="header item">
+          Streamy
         </Link>
         <div className="right menu">
           <Link to="/" className="item">
