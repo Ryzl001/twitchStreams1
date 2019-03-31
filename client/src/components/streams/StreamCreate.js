@@ -4,11 +4,13 @@ import { Field, reduxForm } from "redux-form";
 
 class StreamCreate extends Component {
   // Wyciągamy z formProps tylko { input }
-  renderInput({ input }) {
+  // Wyciągamy kolejne właściwości, które zostały przekazane do pola Field
+  renderInput({ input, label }) {
     // console.log(input);
     return (
       // wypluwamy wszystkie właściwości formProps.input do <input />, takie jak onChange, value itp
-      <div>
+      <div className="field">
+        <label>{label}</label>
         <input {...input} />
       </div>
     );
@@ -16,9 +18,14 @@ class StreamCreate extends Component {
 
   render() {
     return (
-      <form>
-        <Field name="title" component={this.renderInput} />
-        <Field name="description" component={this.renderInput} />
+      // w Field przekazujemy właściwości do renderInput, np label
+      <form className="ui form">
+        <Field name="title" component={this.renderInput} label="Enter Title" />
+        <Field
+          name="description"
+          component={this.renderInput}
+          label="Enter Description"
+        />
       </form>
     );
   }
