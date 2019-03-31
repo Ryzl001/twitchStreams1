@@ -18,7 +18,7 @@ class StreamCreate extends Component {
   // zamiast event wstawiamy formValue
   onSubmit(formValues) {
     // event.preventDefault(); - redux-form zrobi to za nas, nie musimy tego wstawiać
-    console.log(formValues);
+    // console.log(formValues);
   }
 
   render() {
@@ -40,7 +40,20 @@ class StreamCreate extends Component {
   }
 }
 
+const validate = formValues => {
+  const errors = {};
+  if (!formValues.title) {
+    errors.title = "You must enter a title";
+  }
+  if (!formValues.description) {
+    errors.description = "You must enter a description";
+  }
+
+  return errors;
+};
+
 export default reduxForm({
   // nazwa formy, jej funkcja
-  form: "streamCreate"
+  form: "streamCreate",
+  validate: validate
 })(StreamCreate);
