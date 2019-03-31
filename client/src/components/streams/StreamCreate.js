@@ -1,15 +1,18 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// reduxForm to funkcja podobne do connect, która odpowiada za połączenie forlumarza ze State
+import { Field, reduxForm } from "redux-form";
 
 class StreamCreate extends Component {
   render() {
     return (
-      <div>
-        <div>Stream Create</div>
-        <Link to="/">home</Link>
-      </div>
+      <form>
+        <Field />
+      </form>
     );
   }
 }
 
-export default StreamCreate;
+export default reduxForm({
+  // nazwa formy, jej funkcja
+  form: "streamCreate"
+})(StreamCreate);
