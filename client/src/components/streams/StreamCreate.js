@@ -3,10 +3,24 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 
 class StreamCreate extends Component {
+  // formProps - przekazywane właściwości z redux-form
+  renderInput(formProps) {
+    return (
+      <div>
+        <input
+          // wykorzystujemy właściwości formProps przekazane z redux-form
+          onChange={formProps.input.onChange}
+          value={formProps.input.value}
+        />
+      </div>
+    );
+  }
+
   render() {
     return (
       <form>
-        <Field />
+        <Field name="title" component={this.renderInput} />
+        <Field name="description" component={this.renderInput} />
       </form>
     );
   }
