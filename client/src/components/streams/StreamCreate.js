@@ -15,17 +15,26 @@ class StreamCreate extends Component {
       </div>
     );
   }
+  // zamiast event wstawiamy formValue
+  onSubmit(formValues) {
+    // event.preventDefault(); - redux-form zrobi to za nas, nie musimy tego wstawiać
+    console.log(formValues);
+  }
 
   render() {
     return (
       // w Field przekazujemy właściwości do renderInput, np label
-      <form className="ui form">
+      <form
+        onSubmit={this.props.handleSubmit(this.onSubmit)}
+        className="ui form"
+      >
         <Field name="title" component={this.renderInput} label="Enter Title" />
         <Field
           name="description"
           component={this.renderInput}
           label="Enter Description"
         />
+        <button className="ui button primary">submit</button>
       </form>
     );
   }
