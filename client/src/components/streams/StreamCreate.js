@@ -31,12 +31,14 @@ class StreamCreate extends Component {
     );
   };
   // zamiast event wstawiamy formValue
-  onSubmit(formValues) {
-    // event.preventDefault(); - redux-form zrobi to za nas, nie musimy tego wstawiać
-    // console.log(formValues);
-  }
+  // event.preventDefault(); - redux-form zrobi to za nas, nie musimy tego wstawiać
+  // Po zatwierdzeniu formularza tworzymy nowy stream za pomocą action creator metodą POST przekazując formValue - to co wpisał user
+  onSubmit = formValues => {
+    this.props.createStream(formValues);
+  };
 
   render() {
+    // console.log(this.props);
     return (
       // w Field przekazujemy właściwości do renderInput, np label
       /** do formularza trzeba dodać klasę error, żeby komunikaty o błędzie
@@ -70,8 +72,15 @@ const validate = formValues => {
   return errors;
 };
 
-export default reduxForm({
+const formWrapped = reduxForm({
   // nazwa formy, jej funkcja
   form: "streamCreate",
   validate: validate
 })(StreamCreate);
+
+export default connect(
+  null,
+  {
+    createStream
+  }
+)(formWrapped);
