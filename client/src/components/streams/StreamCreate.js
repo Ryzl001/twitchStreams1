@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 // reduxForm to funkcja podobne do connect, która odpowiada za połączenie forlumarza ze State
 import { Field, reduxForm } from "redux-form";
+import { connect } from "react-redux";
+import { createStream } from "../../actions";
 
 class StreamCreate extends Component {
   /** Semating.ui domyślnie error message ustawia display: none w CSS */
