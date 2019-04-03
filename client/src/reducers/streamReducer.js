@@ -12,7 +12,14 @@ export default (state = {}, action) => {
     case CREATE_STREAM:
       return { ...state, [action.payload.id]: action.payload };
     case FETCH_STREAMS:
-      return;
+      /** używamy z  biblioteki lodash metody mapKey - zamienia tablicę w obiekt
+       * pierwszy argument - tablica
+       * drugi argument - jaka wartość ma być użyta jako key w utworzonym obiekcie
+       * {
+       *  2(id tego obiektu użyte jako key): { id: 2, title: "hello", description: "World"} (cały obiekt jako value)
+       * }
+       */
+      return { ...state, ..._.mapKeys(action.payload, "id") };
     case FETCH_STREAM:
       return { ...state, [action.payload.id]: action.payload };
     case EDIT_STREAM:
