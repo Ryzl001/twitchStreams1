@@ -1,25 +1,18 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { fetchStreams } from "../../actions";
 
 class StreamList extends Component {
+  componentDidMount() {
+    this.props.fetchStreams();
+  }
+
   render() {
-    return (
-      <div>
-        <div>
-          <Link to="streams/new">New</Link>
-        </div>
-        <div>
-          <Link to="streams/edit">Edit</Link>
-        </div>
-        <div>
-          <Link to="streams/delete">Delete</Link>
-        </div>
-        <div>
-          <Link to="streams/show">Show</Link>
-        </div>
-      </div>
-    );
+    return <div>StreamList</div>;
   }
 }
 
-export default StreamList;
+export default connect(
+  null,
+  { fetchStreams }
+)(StreamList);
