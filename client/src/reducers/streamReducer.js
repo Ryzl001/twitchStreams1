@@ -1,3 +1,4 @@
+import _ from "lodash";
 import {
   CREATE_STREAM,
   FETCH_STREAMS,
@@ -17,7 +18,11 @@ export default (state = {}, action) => {
     case EDIT_STREAM:
       return { ...state, [action.payload.id]: action.payload };
     case DELETE_STREAM:
-      return;
+      /** używamy biblioteki loadash _.omit, pierwszy argument = object z którego będziemy usuwać
+       * drugi = id recordu
+       * omit nie zmiania obiektu state, tworzy nowy z usuniętym recodem o danym id
+       */
+      return _.omit(state, action.payload);
     default:
       return state;
   }
