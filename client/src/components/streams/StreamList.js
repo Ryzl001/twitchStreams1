@@ -7,14 +7,25 @@ class StreamList extends Component {
     this.props.fetchStreams();
   }
 
+  renderAdmin(stream) {
+    if (stream.userId === this.props.currentUserId) {
+      return (
+        <div className="right floated content">
+          <button className="ui button primary">Edit</button>
+          <button className="ui button negative">Delete</button>
+        </div>
+      );
+    }
+  }
+
   renderStreamList() {
     return this.props.streams.map(stream => {
       return (
         <div className="ui raised segment item" key={stream.id}>
+          {this.renderAdmin(stream)}
           <i className="large middle aligned icon camera" />
           <div className="content">
             {stream.title}
-
             <div className="description">{stream.description}</div>
           </div>
         </div>
@@ -37,7 +48,11 @@ const mapStateToProps = state => {
    * i zwraca tablicę z values tego obiektu
    * używamy, aby potem użyć map na tablicy do wyrenderowania jej zawartości
    */
-  return { streams: Object.values(state.streams) };
+  return {
+    streams: Object.values(state.streams),
+    // Wyciągamy ze state id usera i wstawiamy do this.props
+    currentUserId: state.auth.userId
+  };
 };
 
 export default connect(
