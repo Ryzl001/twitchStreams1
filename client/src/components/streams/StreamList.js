@@ -45,7 +45,7 @@ class StreamList extends Component {
   }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div>
         <h2>Streams</h2>
