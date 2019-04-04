@@ -22,8 +22,14 @@ export const signOut = () => {
   };
 };
 
-export const createStream = formValues => async dispatch => {
-  const response = await streams.post("/streams", formValues);
+/** getState daje nam dostęp do danych w state
+ *
+ */
+export const createStream = formValues => async (dispatch, getState) => {
+  // Wyciągamy ze state userId
+  const { userId } = getState().auth;
+  // Tworzymy nowy obiekt z danymi z formularza plus userId
+  const response = await streams.post("/streams", { ...formValues, userId });
 
   dispatch({
     type: CREATE_STREAM,
