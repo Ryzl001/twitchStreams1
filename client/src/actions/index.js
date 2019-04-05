@@ -60,13 +60,16 @@ export const fetchStream = streamId => async dispatch => {
   });
 };
 
+// PUT wymienia wszystko w danym rekordzie na przekazane wartości
+// PUTCH wymienia tylko te wartości w rekordzie, które zostały przekazane/zmienione
 export const editStream = (streamId, formValues) => async dispatch => {
-  const response = await streams.put(`/streams/${streamId}`, formValues);
+  const response = await streams.patch(`/streams/${streamId}`, formValues);
 
   dispatch({
     type: EDIT_STREAM,
     payload: response.data
   });
+  history.push("/");
 };
 
 export const deleteStream = streamId => async dispatch => {
